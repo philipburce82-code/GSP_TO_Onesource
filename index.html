@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GSP TO Onesource</title>
+  <style>
+    /* Color Palette derived from RingCentral Branding */
+    :root {
+      --rc-orange: #FF5A00;
+      --rc-blue: #0A2540;
+      --rc-light-blue: #0073EA;
+      --bg-gray: #F4F6F8;
+      --text-dark: #222222;
+      --white: #FFFFFF;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Enables Smooth Scroll Behavior Across the Entire Page */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--bg-gray);
+      color: var(--text-dark);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-top: 70px; /* Offset for fixed navbar */
+    }
+
+    /* Fixed Upper Left Navigation Header */
+    .top-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      background-color: var(--rc-blue);
+      border-bottom: 3px solid var(--rc-orange);
+      display: flex;
+      align-items: center;
+      justify-content:space-between;
+      padding: 0 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      z-index: 2000;
+    }
+
+    /* 1. Logo Section */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      padding-right: 15px;
+      gap:10px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .logo-placeholder {
+      width: 200px;
+      height: 42px;
+      border: 2px dashed var(--rc-light-blue);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--rc-light-blue);
+      background-color: #EBF3FA;
+      text-align: center;
+      cursor: pointer;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .logo-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 2. Separated Site Title Header Element */
+    .site-title-container {
+      padding: 0 20px;
+      border-right: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .site-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+    }
+
+    .site-title span {
+      color: var(--rc-orange);
+    }
+
+    /* 3. Navigation Bar Element */
+    nav {
+      display: flex;
+      align-items: center;
+      margin-left: 10px;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+    }
+
+    .nav-item {
+      position: relative;
+    }
+
+    .nav-link {
+      display: block;
+      padding: 24px 16px;
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--rc-orange);
+      color: var(--white);
+    }
+
+    /* Dropdown Menus */
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--white);
+      min-width: 250px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      list-style: none;
+      display: none;
+      z-index: 1000;
+      border-top: 3px solid var(--rc-orange);
+      border-radius: 0 0 4px 4px;
+    }
+
+    .dropdown-item .dropdown-link {
+      display: block;
+      padding: 12px 18px;
+      color: var(--rc-blue);
+      text-decoration: none;
+      font-size: 0.88rem;
+      border-bottom: 1px solid #EAEAEA;
+      cursor: pointer;
+      transition: background-color 0.2s, padding-left 0.2s;
+    }
+
+    .dropdown-item:last-child .dropdown-link {
+      border-bottom: none;
+    }
+
+    .dropdown-link:hover {
+      background-color: #F0F7FF;
+      color: var(--rc-orange);
+      padding-left: 22px;
+    }
+
+    /* Show Dropdown on Hover */
+    .nav-item:hover .dropdown {
+      display: block;
+    }
+
+    /* Main Content Display Area */
+    main {
+      flex: 1;
+      padding: 40px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .content-section {
+      display: none;
+      background: var(--white);
+      padding: 35px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--rc-light-blue);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .content-section h1 {
+      color: var(--rc-blue);
+      margin-bottom: 15px;
+      font-size: 1.8rem;
+    }
+
+    .content-section p {
+      color: #555555;
+      line-height: 1.6;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--rc-blue);
+      color: var(--white);
+      text-align: center;
+      padding: 15px;
+      font-size: 0.85rem;
+      border-top: 2px solid var(--rc-orange);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top-header">
+    
+    <div class="logo-container">
+      <label for="logo-input" class="logo-placeholder" id="logo-preview">
+        Upload Logo
+      </label>
+      <input type="file" id="logo-input" accept="image/*" style="display: none;" onchange="loadLogo(event)">
+      <div class="site-title">GSP TO <span>Onesource</span></div>
+    </div>
+
+    <!-- 
+    <div class="site-title-container">
+      <div class="site-title">GSP TO <span>Onesource</span></div>
+    </div>
+     -->
+
+    <nav>
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a class="nav-link active" onclick="showSection('home')">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">GSP Main &#9662;</a>
+          <ul class="dropdown">
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('gsp-bulletin')">GSP Bulletin</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('appreciation-wall')">Appreciation Wall</a></li>
+          </ul>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link">Partners &#9662;</a>
+          <ul class="dropdown">
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('att-office')">AT&T Office At Hand</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('brightspeed')">Brightspeed Voice +</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('bt-cloudwork')">BT Cloudwork</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('cox-connect')">COX Business Connect</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('frontier')">Frontier with Ringcentral</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('rc-uk')">RC UK</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('telus')">Telus Business Connect</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('zayo')">Zayo UC+</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" onclick="showSection('qa-corner')">QA Corner &#9662;</a>
+          <ul class="dropdown">
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('csat-rockstars')">CSAT Rockstars</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('process-library')">Process Library</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('quick-reminders')">Quick Reminders</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('qa-wall-of-fame')">QA Wall of Fame</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('qa-updates')">QA Updates and Announcements</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('quality-risk')">Quality Risk Management</a></li>
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('qa-forms')">QA Forms and Versions</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" onclick="showSection('gsp-tools')">GSP TO Tools</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">Others &#9662;</a>
+          <ul class="dropdown">
+            <li class="dropdown-item"><a class="dropdown-link" onclick="showSection('rc-helplines')">RC & Acquire Helplines</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="home" class="content-section active">
+      <h1>Welcome to GSP TO Onesource</h1>
+      <p>This is your centralized hub for partner updates, quality assurance tools, and process workflows. Click any menu item above to navigate smoothly across sections.</p>
+    </section>
+
+    <section id="gsp-bulletin" class="content-section">
+      <h1>GSP Bulletin</h1>
+      <p>Content and updates for the GSP Bulletin section will be displayed here.</p>
+    </section>
+    <section id="appreciation-wall" class="content-section">
+      <h1>Appreciation Wall</h1>
+      <p>A place to celebrate wins and give kudos across the team.</p>
+    </section>
+
+    <section id="att-office" class="content-section">
+      <h1>AT&T Office At Hand</h1>
+      <p>Resources, documentation, and tools for AT&T Office At Hand.</p>
+    </section>
+    <section id="brightspeed" class="content-section">
+      <h1>Brightspeed Voice +</h1>
+      <p>Resources and updates for Brightspeed Voice +.</p>
+    </section>
+    <section id="bt-cloudwork" class="content-section">
+      <h1>BT Cloudwork</h1>
+      <p>Resources and documentation for BT Cloudwork.</p>
+    </section>
+    <section id="cox-connect" class="content-section">
+      <h1>COX Business Connect</h1>
+      <p>Resources and updates for COX Business Connect.</p>
+    </section>
+    <section id="frontier" class="content-section">
+      <h1>Frontier with Ringcentral</h1>
+      <p>Resources and guidance for Frontier with RingCentral.</p>
+    </section>
+    <section id="rc-uk" class="content-section">
+      <h1>RC UK</h1>
+      <p>Specific documentation and updates for RingCentral UK.</p>
+    </section>
+    <section id="telus" class="content-section">
+      <h1>Telus Business Connect</h1>
+      <p>Resources and documentation for Telus Business Connect.</p>
+    </section>
+    <section id="zayo" class="content-section">
+      <h1>Zayo UC+</h1>
+      <p>Resources and guides for Zayo UC+.</p>
+    </section>
+
+    <section id="qa-corner" class="content-section">
+      <h1>QA Corner Overview</h1>
+      <p>Welcome to the main QA Corner section. Use the dropdown to jump directly to specialized QA pages.</p>
+    </section>
+    <section id="csat-rockstars" class="content-section">
+      <h1>CSAT Rockstars</h1>
+      <p>Highlighting our top CSAT performers and recognition milestones.</p>
+    </section>
+    <section id="process-library" class="content-section">
+      <h1>Process Library</h1>
+      <p>Standard operating procedures, reference guides, and workflow charts.</p>
+    </section>
+    <section id="quick-reminders" class="content-section">
+      <h1>Quick Reminders</h1>
+      <p>Key operational reminders, daily highlights, and priority call-outs.</p>
+    </section>
+    <section id="qa-wall-of-fame" class="content-section">
+      <h1>QA Wall of Fame</h1>
+      <p>Honoring high quality standards and top audit scores.</p>
+    </section>
+    <section id="qa-updates" class="content-section">
+      <h1>QA Updates and Announcements</h1>
+      <p>Latest announcements regarding quality guidelines and policy changes.</p>
+    </section>
+    <section id="quality-risk" class="content-section">
+      <h1>Quality Risk Management</h1>
+      <p>Frameworks, mitigation protocols, and compliance procedures.</p>
+    </section>
+    <section id="qa-forms" class="content-section">
+      <h1>QA Forms and Versions</h1>
+      <p>Downloadable evaluation forms, audit rubrics, and version history logs.</p>
+    </section>
+
+    <section id="gsp-tools" class="content-section">
+      <h1>GSP TO Tools</h1>
+      <p>Access productivity tools, calculators, and operational utilities.</p>
+    </section>
+    <section id="rc-helplines" class="content-section">
+      <h1>RC & Acquire Helplines</h1>
+      <p>Directory of escalation pathways, support desks, and key contacts.</p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 GSP TO Onesource. All rights reserved.
+  </footer>
+
+  <script>
+    // Image Uploading for Logo Placeholder
+    function loadLogo(event) {
+      const container = document.getElementById('logo-preview');
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          container.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Handles Dynamic Section Display with Smooth Transition Scrolling
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('.content-section');
+      sections.forEach(section => section.classList.remove('active'));
+
+      const targetSection = document.getElementById(sectionId);
+      if (targetSection) {
+        targetSection.classList.add('active');
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+    }
+  </script>
+</body>
+</html>
