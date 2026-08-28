@@ -191,7 +191,7 @@ hr {
 .our-leader img{
   width: 100%;
   height: auto;
-  object-fit: contain;
+  object-fit:inherit;
 }
 
 .content-section.active {
