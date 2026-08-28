@@ -62,29 +62,13 @@
       border-right: 1px solid rgba(255, 255, 255, 0.15);
       flex-shrink: 0;
     }
-
-    .logo-placeholder {
+    .logo-container img{
+      height: 100px;
       width: 200px;
-      height: 42px;
-      border: 2px dashed var(--rc-light-blue);
-      border-radius: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 9px;
-      color: var(--rc-light-blue);
-      background-color: #EBF3FA;
-      text-align: center;
-      cursor: pointer;
-      overflow: hidden;
-      flex-shrink: 0;
+      object-fit:contain;
     }
 
-    .logo-placeholder img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+  
 
     /* 2. Separated Site Title Header Element */
     .site-title-container {
@@ -233,10 +217,7 @@
   <header class="top-header">
     
     <div class="logo-container">
-      <label for="logo-input" class="logo-placeholder" id="logo-preview">
-        Upload Logo
-      </label>
-      <input type="file" id="logo-input" accept="image/*" style="display: none;" onchange="loadLogo(event)">
+      <img src="Screenshot 2026-08-28 060200.png" alt="">
       <div class="site-title">GSP TO <span>Onesource</span></div>
     </div>
 
@@ -397,18 +378,8 @@
   </footer>
 
   <script>
-    // Image Uploading for Logo Placeholder
-    function loadLogo(event) {
-      const container = document.getElementById('logo-preview');
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          container.innerHTML = `<img src="${e.target.result}" alt="Logo">`;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+    
+    
 
     // Handles Dynamic Section Display with Smooth Transition Scrolling
     function showSection(sectionId) {
