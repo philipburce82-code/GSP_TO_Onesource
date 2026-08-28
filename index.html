@@ -61,6 +61,7 @@
       gap:10px;
       border-right: 1px solid rgba(255, 255, 255, 0.15);
       flex-shrink: 0;
+      cursor: pointer;
     }
     .logo-container img{
       height: 100px;
@@ -170,12 +171,12 @@
       width: 100%;
     }
 
-   hr {
-    border: none;
-    border-top: 4px solid var( --rc-light-blue: #0073EA);
-    margin: 20px 0;
-    width: 100%; /* Guarantees it spans the container */
-}
+    hr {
+      border: none;
+      border-top: 4px solid var(--rc-light-blue, #0073EA);
+      margin: 20px 0;
+      width: 100%;
+    }
     .content-section {
       display: none;
       background: var(--white);
@@ -223,7 +224,7 @@
 
   <header class="top-header">
     
-    <div class="logo-container">
+    <div class="logo-container" onclick="showSection('home')">
       <img src="Screenshot 2026-08-28 060200.png" alt="">
       <div class="site-title">GSP TO <span>Onesource</span></div>
     </div>
