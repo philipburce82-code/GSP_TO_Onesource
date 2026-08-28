@@ -184,14 +184,14 @@ hr {
 .our-leader{
   display:grid;
   grid-template-columns: 2fr 1fr;
-  gap:5px;
+  gap:20px;
 
 }
 
 .our-leader img{
   width: 100%;
   height: auto;
-  object-fit:inherit;
+  object-fit:contain;
 }
 
 .content-section.active {
