@@ -228,6 +228,66 @@
       font-size: 0.85rem;
       border-top: 2px solid var(--rc-orange);
     }
+
+    .custom-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    font-size: 14px;
+    line-height: 1.5;
+    text-align: left;
+  }
+
+  th {
+    background-color: #6a6c6e; /* Medium-Dark Speckled Gray */
+    color: #ffffff;
+    font-weight: bold;
+    padding: 14px 16px;
+    text-transform: none;
+    font-size: 14px;
+    border: none;
+  }
+
+  td {
+    padding: 12px 16px;
+    color: #333333;
+    border-bottom: 1px solid #e0e0e0;
+    vertical-align: middle;
+  }
+
+  /* Alternating Row Colors */
+  tbody tr:nth-child(even) {
+    background-color: #f2f2f3; /* Light Paper Gray */
+  }
+
+  tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+  }
+
+  /* Row Hover Effect */
+  tbody tr:hover {
+    background-color: #e2e3e5; /* Soft Hover Gray */
+    transition: background-color 0.2s ease;
+  }
+
+  /* Text Link Styling */
+  .text-link {
+    color: #525456; /* Matching Dark Neutral Gray Link */
+    font-weight: bold;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+  }
+
+  .text-link:hover {
+    color: #000000;
+  }
   </style>
 </head>
 <body>
@@ -385,7 +445,74 @@
       <p>Access productivity tools and operational utilities.</p><br><br>
       <hr>
       <br><br>
-      <iframe src="https://docs.google.com/spreadsheets/d/1bOlQkV9XX0oLu2ie7cVsmKub554XSi1tp9V-HcCDpsQ/edit?gid=0#gid=0" frameborder="0">GSP TO Tools</iframe>
+      <div class="custom-table-container">
+  <table>
+    <thead>
+      <tr>
+        <th style="width: 25%;">Tool Name</th>
+        <th style="width: 30%;">Link</th>
+        <th style="width: 45%;">Tool Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>GSP Quick Reference Guide</strong></td>
+        <td><a href="https://docs.google.com/spreadsheets/d/1PWp-H32OYxwxcf92j5lkiYV2WTSBS8I5gmZgGLTaS3k/edit?gid=1364439868#gid=1364439868" target="_blank" rel="noopener noreferrer" class="text-link">GSP Quick Reference Guide</a></td>
+        <td>This is where you can see updated information about Brands' directories and some processes</td>
+      </tr>
+      <tr>
+        <td><strong>GSP Account Verification Guide</strong></td>
+        <td><a href="https://docs.google.com/document/d/1YgHQlP2VuAQN8qbmOflxmfdusQBBa7838jCjbtwiFG0/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="text-link">GSP Account Verification Guide</a></td>
+        <td>Access this to know more about our established process for verifying clients using SCP</td>
+      </tr>
+      <tr>
+        <td><strong>Timezone Setter</strong></td>
+        <td><a href="https://docs.google.com/spreadsheets/d/11HD2S2PawXsTKneT8jHqdZjyZ7c0aSzgPKtXyd3XN_A/edit?gid=777535284#gid=777535284" target="_blank" rel="noopener noreferrer" class="text-link">Timezone Setter</a></td>
+        <td>This is your guide when it comes to making sure you are setting up the proper timezone of your customer's location. <strong>Take Note : </strong> Always look at the details under IANA Identifier column</td>
+      </tr>
+      <tr>
+        <td><strong>Telus Business Connect Updated Feature Matrix</strong></td>
+        <td><a href="https://docs.google.com/spreadsheets/d/15D70avoh9dJCmc0cBa-6akSVMkodQWDKoiKzBkXq1FA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="text-link">Telus Business Connect Updated Feature Matrix</a></td>
+        <td>This is where you can access features available based on Telus Business Connect customer's plan</td>
+      </tr>
+      <tr>
+        <td><strong>SFDC GSP TO Call Template</strong></td>
+        <td><a href="https://docs.google.com/document/d/1havC2aMS0LRev6anY1gZOT5gS8s1iax2bb_0pBGuwmc/edit?tab=t.0" target="_blank" rel="noopener noreferrer" class="text-link">SFDC GSP TO Call Template</a></td>
+        <td>This is your guide in making sure you are able to have proper onboarding call flow as well as ensure that you are able to cover essential tasks/topics within the whole session.</td>
+      </tr>
+      <tr>
+        <td><strong>Portability Checker</strong></td>
+        <td><a href="https://www.ringcentral.com/att/portabilitytoolcheck" target="_blank" rel="noopener noreferrer" class="text-link">Portability Checker</a></td>
+        <td>Instead of directly submitting the number the customer needs to port in using Service portal, you can first use this to see if the number is portable</td>
+      </tr>
+      <tr>
+        <td><strong>RC Support Site</strong></td>
+        <td><a href="https://support.ringcentral.com/" target="_blank" rel="noopener noreferrer" class="text-link">RC Support Site</a></td>
+        <td>This is the RC's main support site. You can visit this site for some support articles that you can find helpful in supporting your customer</td>
+      </tr>
+      <tr>
+        <td><strong>Provisioning Guide Microsite</strong></td>
+        <td><a href="https://sites.google.com/view/provisioning-microsite/manual-provisioning-guides/cisco" target="_blank" rel="noopener noreferrer" class="text-link">Provisioning Guide Microsite</a></td>
+        <td>When it comes to provisioning, this is your one of your bestfriends especially for BYOD devices</td>
+      </tr>
+      <tr>
+        <td><strong>Care Connect Hub</strong></td>
+        <td><a href="https://sites.google.com/ringcentral.com/careconnecthub/home" target="_blank" rel="noopener noreferrer" class="text-link">Care Connect Hub</a></td>
+        <td>Usually used by Technical Team, this can be a source of information for you to support your customer during your onboarding</td>
+      </tr>
+      <tr>
+        <td><strong>RC Supported Devices (BYOD)</strong></td>
+        <td><a href="https://support.ringcentral.com/article-v2/certified-supported-deskphones-ringcentral.html?brand=RingCentral&product=RingEX&language=en_US&pills-nav=yealink" target="_blank" rel="noopener noreferrer" class="text-link">RC Supported Devices (BYOD)</a></td>
+        <td>If a customer wants to provision his BYOD, you may want to look at this first to qualify his device</td>
+      </tr>
+      <tr>
+        <td><strong>TCR Registration Checklist</strong></td>
+        <td><a href="https://partnersupport.ringcentral.com/article-v2/TCR-registration-checklist-partner.html?brand=Partner&product=RingEX&language=en_US" target="_blank" rel="noopener noreferrer" class="text-link">TCR Registration Checklist</a></td>
+        <td>Access this to be guided on what pre requisites the customer must have before registering for SMS feature</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
     </section>
 
     <section id="rc-helplines" class="content-section">
