@@ -28,14 +28,14 @@
       scroll-behavior: smooth;
     }
 
-    body {
-      background-color: var(--bg-gray);
-      color: var(--text-dark);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding-top: 70px; /* Offset for fixed navbar */
-    }
+   body {
+    background-color: var(--bg-gray);
+    color: var(--text-dark);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    padding-top: 90px;          /* Increased to give space beneath the fixed header */
+  }
 
     /* Fixed Upper Left Navigation Header */
     .top-header {
@@ -114,12 +114,15 @@
 
     .nav-link {
       display: block;
-      padding: 24px 16px;
+      padding: 0 16px;            /* Removed top/bottom padding to allow flex centering */
+      height: 70px;               /* Matches header height */
+      line-height: 70px;          /* Centers text vertically */
       color: var(--white);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
       cursor: pointer;
+      white-space: nowrap;        /* Keeps 'GSP TO Tools' on a single line */
       transition: background-color 0.2s, color 0.2s;
     }
 
@@ -173,6 +176,7 @@
     .search-container {
       position: relative;
       margin-left: 10px;
+      flex-shrink: 0;             /* Prevents search box from shrinking awkwardly */
     }
 
     .search-box {
