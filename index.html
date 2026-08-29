@@ -406,6 +406,69 @@
     .text-link:hover {
       color: #000000;
     }
+
+    /* Collapsible Details/Summary Styling */
+details.rc-collapsible {
+  background-color: var(--white);
+  border: 1px solid #E0E0E0;
+  border-left: 4px solid var(--rc-light-blue);
+  border-radius: 6px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+details.rc-collapsible[open] {
+  border-left-color: var(--rc-orange);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+summary.rc-collapsible-header {
+  padding: 14px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--rc-blue);
+  background-color: #FFFFFF;
+  cursor: pointer;
+  list-style: none; /* Removes default arrow in webkit */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+summary.rc-collapsible-header::-webkit-details-marker {
+  display: none; /* Removes default arrow in Chrome/Safari */
+}
+
+/* Custom Chevron Indicator */
+summary.rc-collapsible-header::after {
+  content: '▼';
+  font-size: 0.75rem;
+  color: var(--rc-blue);
+  transition: transform 0.3s ease;
+}
+
+details[open] summary.rc-collapsible-header::after {
+  transform: rotate(-180deg);
+  color: var(--rc-orange);
+}
+
+summary.rc-collapsible-header:hover {
+  background-color: #F0F7FF;
+  color: var(--rc-orange);
+}
+
+.rc-collapsible-body {
+  padding: 16px 18px;
+  border-top: 1px solid #EAEAEA;
+  background-color: var(--white);
+  color: #555555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
   </style>
 </head>
 <body>
