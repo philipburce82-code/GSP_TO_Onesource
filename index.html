@@ -609,7 +609,44 @@ summary.rc-collapsible-header:hover {
   margin-left: 10px;
 }
 
-  
+      /* --- PROCESS BOOK TABS --- */
+    .process-book-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 25px;
+      margin-bottom: -1px;
+    }
+
+    .process-book-tab {
+      padding: 10px 18px;
+      background-color: #E9ECEF;
+      color: var(--rc-blue);
+      border: 1px solid #DADFE3;
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .process-book-tab:hover {
+      background-color: #DCE1E5;
+    }
+
+    .process-book-tab.active {
+      background-color: var(--white);
+      color: var(--rc-orange);
+      border-color: #E0E0E0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .process-book {
+      margin-top: 0;
+      border-top-left-radius: 0;
+    }
 
   </style>
 </head>
@@ -943,29 +980,27 @@ summary.rc-collapsible-header:hover {
     <section id="csat-rockstars" class="content-section">
       <h1>CSAT Rockstars</h1>
       <p>Highlighting our top CSAT performers and recognition milestones.</p>
+      <br>
+      <hr>
+      <br>
+
     </section>
-        <section id="process-library" class="content-section">
+          <section id="process-library" class="content-section">
       <h1>Process Library</h1>
       <p>Standard operating procedures, reference guides, and workflow charts.</p>
       <br>
       <hr>
       <br>
 
+      <div class="process-book-tabs" id="pbTabs"></div>
+
       <div class="process-book">
         <div class="process-book-header">
-          <span class="process-book-title" id="pbTitle">Process Book 1</span>
+          <span class="process-book-title" id="pbTitle">Process Book</span>
           <span class="process-book-pagecount" id="pbCount">Page 1 of 1</span>
         </div>
 
-        <div class="process-book-page" id="pbPageContent">
-          <!-- Rendered dynamically by JS -->
-           
-        </div>
-
-        <div class="process-book-page" id="pbPageContent">
-          <!-- Rendered dynamically by JS -->
-          
-        </div>
+        <div class="process-book-page" id="pbPageContent"></div>
 
         <div class="process-book-footer">
           <button class="process-nav-btn" id="pbPrevBtn" onclick="pbGoTo(pbCurrentPage - 1)">&#8592; Prev</button>
@@ -1102,6 +1137,111 @@ summary.rc-collapsible-header:hover {
 
   <script>
 
+         // --- Process Books (multiple books, each with its own pages) ---
+    // Add a new BOOK by adding a new key to this object.
+    // Add a new PAGE to a book by adding an object to that book's array.
+    const processBooks = {
+      'book1': {
+        label: 'Process Book 1',
+        pages: [
+          {
+            tag: 'Onboarding',
+            title: 'New Customer Verification',
+            body: `
+              <ol>
+                <li>Confirm the account owner's identity using SCP verification.</li>
+                <li>Cross-check the business name against the account record.</li>
+                <li>Validate the primary contact's email domain matches the company.</li>
+              </ol>
+            `,
+            note: 'Always escalate to Tier 2 if identity cannot be confirmed after two attempts.'
+          },
+          {
+            tag: 'Provisioning',
+            title: 'Timezone Configuration',
+            body: `
+              <p>When setting a customer's timezone, always reference the IANA Identifier column in the Timezone Setter, not the display name.</p>
+            `,
+            note: 'Incorrect timezones are a common cause of missed call routing schedules.'
+          }
+        ]
+      },
+      'book2': {
+        label: 'Process Book 2',
+        pages: [
+          {
+            tag: 'Porting',
+            title: 'Number Portability Check',
+            body: `
+              <ol>
+                <li>Before submitting a port request in the Service Portal, run the number through the Portability Checker.</li>
+                <li>If flagged as non-portable, inform the customer before proceeding.</li>
+              </ol>
+            `,
+            note: ''
+          }
+        ]
+      }
+
+      // Add more books here, e.g. 'book3': { label: 'Process Book 3', pages: [ ... ] }
+    };
+
+    let pbCurrentBook = 'book1';
+    let pbCurrentPage = 0;
+
+    function pbRenderTabs() {
+      const tabs = document.getElementById('pbTabs');
+      tabs.innerHTML = Object.keys(processBooks).map(key => `
+        <div class="process-book-tab ${key === pbCurrentBook ? 'active' : ''}" onclick="pbSwitchBook('${key}')">
+          ${processBooks[key].label}
+        </div>
+      `).join('');
+    }
+
+    function pbSwitchBook(bookKey) {
+      pbCurrentBook = bookKey;
+      pbCurrentPage = 0;
+      pbRenderTabs();
+      pbRender();
+    }
+
+    function pbRender() {
+      const book = processBooks[pbCurrentBook];
+      const page = book.pages[pbCurrentPage];
+      const content = document.getElementById('pbPageContent');
+      const title = document.getElementById('pbTitle');
+      const count = document.getElementById('pbCount');
+      const dots = document.getElementById('pbDots');
+      const prevBtn = document.getElementById('pbPrevBtn');
+      const nextBtn = document.getElementById('pbNextBtn');
+
+      title.textContent = book.label;
+
+      content.innerHTML = `
+        <span class="process-page-tag">${page.tag}</span>
+        <h2 class="process-page-title">${page.title}</h2>
+        <div class="process-page-body">${page.body}</div>
+        ${page.note ? `<div class="process-page-note">${page.note}</div>` : ''}
+      `;
+
+      count.textContent = `Page ${pbCurrentPage + 1} of ${book.pages.length}`;
+      prevBtn.disabled = pbCurrentPage === 0;
+      nextBtn.disabled = pbCurrentPage === book.pages.length - 1;
+
+      dots.innerHTML = book.pages.map((_, i) =>
+        `<span class="process-page-dot ${i === pbCurrentPage ? 'active' : ''}" onclick="pbGoTo(${i})"></span>`
+      ).join('');
+    }
+
+    function pbGoTo(index) {
+      const book = processBooks[pbCurrentBook];
+      if (index < 0 || index >= book.pages.length) return;
+      pbCurrentPage = index;
+      pbRender();
+    }
+
+    pbRenderTabs();
+    pbRender(); 
 
     // Section Switcher with Navigation Highlight
     function showSection(sectionId) {
