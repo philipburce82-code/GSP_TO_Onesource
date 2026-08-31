@@ -32,32 +32,26 @@
 
         hr {
       border: none;
-      height: 2px;
+      height: 1px;
       margin: 30px 0;
       width: 100%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--rc-light-blue) 15%,
-        var(--rc-orange) 50%,
-        var(--rc-light-blue) 85%,
-        transparent
-      );
+      background-color: #DADFE3;
       position: relative;
       overflow: visible;
     }
 
     hr::after {
-      content: '';
+      content: '\2022 \2022 \2022';
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 10px;
-      height: 10px;
-      background-color: var(--rc-orange);
-      border: 2px solid var(--white);
-      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+      transform: translate(-50%, -50%);
+      background-color: var(--bg-gray);
+      color: var(--rc-orange);
+      font-size: 1rem;
+      letter-spacing: 4px;
+      padding: 0 12px;
+      line-height: 1;
     }
 
    body {
