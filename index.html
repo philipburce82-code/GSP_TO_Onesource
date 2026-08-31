@@ -30,6 +30,36 @@
       scroll-behavior: smooth;
     }
 
+        hr {
+      border: none;
+      height: 2px;
+      margin: 30px 0;
+      width: 100%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--rc-light-blue) 15%,
+        var(--rc-orange) 50%,
+        var(--rc-light-blue) 85%,
+        transparent
+      );
+      position: relative;
+      overflow: visible;
+    }
+
+    hr::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background-color: var(--rc-orange);
+      border: 2px solid var(--white);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
    body {
     background-color: var(--bg-gray);
     color: var(--text-dark);
