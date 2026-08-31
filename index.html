@@ -1103,12 +1103,12 @@ summary.rc-collapsible-header:hover {
 
         <div class="process-book-page" id="pbPageContent">
           <!-- Rendered dynamically by JS -->
-           <p>This is a test for Page 1</p>
+           
         </div>
 
         <div class="process-book-page" id="pbPageContent">
           <!-- Rendered dynamically by JS -->
-           <p>This is a test for Page 2</p>
+          
         </div>
 
         <div class="process-book-footer">
@@ -1245,6 +1245,86 @@ summary.rc-collapsible-header:hover {
   </footer>
 
   <script>
+
+        // --- Process Book ---
+    // Add a new page by adding an object to this array.
+    // "body" accepts raw HTML — use <ol>, <ul>, <p>, etc.
+    const processBookPages = [
+      {
+        tag: 'Onboarding',
+        title: 'New Customer Verification',
+        body: `
+          <ol>
+            <li>Confirm the account owner's identity using SCP verification.</li>
+            <li>Cross-check the business name against the account record.</li>
+            <li>Validate the primary contact's email domain matches the company.</li>
+          </ol>
+        `,
+        note: 'Always escalate to Tier 2 if identity cannot be confirmed after two attempts.'
+      },
+      {
+        tag: 'Provisioning',
+        title: 'Timezone Configuration',
+        body: `
+          <p>When setting a customer's timezone, always reference the IANA Identifier column in the Timezone Setter, not the display name.</p>
+          <ul>
+            <li>Open the Timezone Setter tool.</li>
+            <li>Locate the customer's region.</li>
+            <li>Copy the exact IANA Identifier into the account settings.</li>
+          </ul>
+        `,
+        note: 'Incorrect timezones are a common cause of missed call routing schedules.'
+      },
+      {
+        tag: 'Porting',
+        title: 'Number Portability Check',
+        body: `
+          <ol>
+            <li>Before submitting a port request in the Service Portal, run the number through the Portability Checker.</li>
+            <li>If flagged as non-portable, inform the customer before proceeding.</li>
+            <li>Only submit confirmed-portable numbers to avoid delays.</li>
+          </ol>
+        `,
+        note: ''
+      }
+
+      // Add more pages here by copying an object above and editing tag/title/body/note.
+    ];
+
+    let pbCurrentPage = 0;
+
+    function pbRender() {
+      const page = processBookPages[pbCurrentPage];
+      const content = document.getElementById('pbPageContent');
+      const count = document.getElementById('pbCount');
+      const dots = document.getElementById('pbDots');
+      const prevBtn = document.getElementById('pbPrevBtn');
+      const nextBtn = document.getElementById('pbNextBtn');
+
+      content.innerHTML = `
+        <span class="process-page-tag">${page.tag}</span>
+        <h2 class="process-page-title">${page.title}</h2>
+        <div class="process-page-body">${page.body}</div>
+        ${page.note ? `<div class="process-page-note">${page.note}</div>` : ''}
+      `;
+
+      count.textContent = `Page ${pbCurrentPage + 1} of ${processBookPages.length}`;
+      prevBtn.disabled = pbCurrentPage === 0;
+      nextBtn.disabled = pbCurrentPage === processBookPages.length - 1;
+
+      dots.innerHTML = processBookPages.map((_, i) =>
+        `<span class="process-page-dot ${i === pbCurrentPage ? 'active' : ''}" onclick="pbGoTo(${i})"></span>`
+      ).join('');
+    }
+
+    function pbGoTo(index) {
+      if (index < 0 || index >= processBookPages.length) return;
+      pbCurrentPage = index;
+      pbRender();
+    }
+
+    pbRender();
+    
     // Section Switcher with Navigation Highlight
     function showSection(sectionId) {
       const sections = document.querySelectorAll('.content-section');
