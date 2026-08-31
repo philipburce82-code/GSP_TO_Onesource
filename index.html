@@ -1291,21 +1291,26 @@ summary.rc-collapsible-header:hover {
             tag: 'QA Dispute',
             title: 'Stage 1',
             body: `
-              <p>After advisor received his/her audit result; ​</p><br>
+              <p>After advisor received his/her audit result; ​</p>
               <ol>
                 <li>Review the markdowns and call recording attached to the email sent by the auditor.</li>
                 <li>Send email to your immediate supervisor indicating the discrepancy found in the audit within 24 hours.</li>
               </ol>
             `,
-            note: 'The QA results that will be sent via E-Mail has links for QA Form, Call Recording and Subject Line that has Audit Notification'
+            note: 'The QA result that will be sent via E-Mail has links for QA Form, Call Recording and Subject Line that has "Audit Notification"'
           },
           {
-            tag: 'Provisioning',
-            title: 'Timezone Configuration',
+            tag: 'QA Dispute',
+            title: 'Stage 2',
             body: `
-              <p>When setting a customer's timezone, always reference the IANA Identifier column in the Timezone Setter, not the display name.</p>
+              <p>After Supervisor received email from the advisor;​</p>
+              <ol>
+                <li>Supervisor evaluates the potential cause of the dispute.​</li>
+                <li>If a dispute is deemed valid, the supervisor sends an email to the QA team, CCing the advisor. Otherwise, the supervisor will coach the advisor on the infraction committed.​​</li>
+                <li>QA team re-evalutes the dispute based on the supervisor's input and set a discussion for its resolution within 48-72 hours. ​​</li>
+              </ol>
             `,
-            note: 'Incorrect timezones are a common cause of missed call routing schedules.'
+            note: 'The 48-72 hours duration for resolution will be postponed if the advisor is on leave until his/her return.'
           }
         ]
       },
