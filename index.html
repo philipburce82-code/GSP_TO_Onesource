@@ -1281,17 +1281,7 @@ summary.rc-collapsible-header:hover {
 
       </div>
     </section>
-    
-<!-- Use these sections for future section to show updates and announcements
-    <section id="blank-section" class="content-section"> 
-      <h1>Here's title of this update!</h1>
-      <p>This is where to descrive what this update is for.</p>
-      <p></p>
-    </section>
-    <section id="blank-section"></section>
-    <section id="blank-section"></section>
-    <section id="blank-section"></section>
- -->
+  
 
   </main>
 
@@ -1301,10 +1291,12 @@ summary.rc-collapsible-header:hover {
 
   <script>
 
-        // --- Article content shown inside blank-section ---
+          // --- Article content shown inside blank-section ---
     // Add a new entry here for each new update link.
+    // "id" is a reference/tracking ID you can assign per update.
     const articles = {
       'tf-charges-aug17': {
+        id: 'UPD-2026-0817',
         title: 'Telus BConn TF Charges Discussion',
         date: 'Effective August 17, 2026',
         body: `
@@ -1312,6 +1304,7 @@ summary.rc-collapsible-header:hover {
         `
       },
       'number-change-aug10': {
+        id: 'UPD-2026-0810',
         title: 'Telus BConn Number Change Request',
         date: 'Effective August 10, 2026',
         body: `
@@ -1327,7 +1320,8 @@ summary.rc-collapsible-header:hover {
 
       document.getElementById('blankSectionContent').innerHTML = `
         <h1>${article.title}</h1>
-        <p style="color:#888; font-size:0.85rem; margin-bottom:20px;">${article.date}</p>
+        <p style="color:#888; font-size:0.85rem; margin-bottom:4px;">${article.date}</p>
+        <p style="color:#aaa; font-size:0.75rem; margin-bottom:20px;">Reference: ${article.id}</p>
         ${article.body}
       `;
 
