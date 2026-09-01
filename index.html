@@ -1172,10 +1172,9 @@ summary.rc-collapsible-header:hover {
       <details class="rc-collapsible">
         <summary class="rc-collapsible-header">August 2026 Updates</summary>
         <div class="rc-collapsible-body">
-  
           <ul>
-            <li><a href="#sample-section" onclick="showSection('sample-section')">Telus BConn TF Charges Discussion | Effective August 17, 2026</a></li>
-            <li><a href="#blank-section">Telus BConn Number Change Request | Effective Effective August 10, 2026 </a></li>
+            <li><a href="javascript:void(0);" onclick="openArticle('tf-charges-aug17')"><strong>Telus BConn TF Charges Discussion</strong> | Effective August 17, 2026</a></li>
+            <li><a href="javascript:void(0);" onclick="openArticle('number-change-aug10')"><strong>Telus BConn Number Change Request</strong>| Effective August 10, 2026</a></li>
           </ul>
         </div>
       </details>
@@ -1277,10 +1276,10 @@ summary.rc-collapsible-header:hover {
       <p>Directory of escalation pathways, support desks, and key contacts.</p>
     </section>
 
-    <section id="sample-section" class="content-section"> 
-      <h1>Here's title of this update!</h1>
-      <p>This is where to descrive what this update is for.</p>
-      <p></p>
+    <section id="blank-section" class="content-section">
+      <div id="blankSectionContent">
+
+      </div>
     </section>
     
 <!-- Use these sections for future section to show updates and announcements
@@ -1301,6 +1300,39 @@ summary.rc-collapsible-header:hover {
   </footer>
 
   <script>
+
+        // --- Article content shown inside blank-section ---
+    // Add a new entry here for each new update link.
+    const articles = {
+      'tf-charges-aug17': {
+        title: 'Telus BConn TF Charges Discussion',
+        date: 'Effective August 17, 2026',
+        body: `
+          <p>Write the full article content here — details about the toll-free charges change.</p>
+        `
+      },
+      'number-change-aug10': {
+        title: 'Telus BConn Number Change Request',
+        date: 'Effective August 10, 2026',
+        body: `
+          <p>Write the full article content here — details about the number change request process.</p>
+        `
+      }
+      // Add more articles here as you publish updates
+    };
+
+    function openArticle(articleId) {
+      const article = articles[articleId];
+      if (!article) return;
+
+      document.getElementById('blankSectionContent').innerHTML = `
+        <h1>${article.title}</h1>
+        <p style="color:#888; font-size:0.85rem; margin-bottom:20px;">${article.date}</p>
+        ${article.body}
+      `;
+
+      showSection('blank-section');
+    }
 
     // --- Process Books (multiple books, each with its own pages) ---
     // Add a new BOOK by adding a new key to this object.
