@@ -791,6 +791,28 @@ summary.rc-collapsible-header:hover {
       margin: 0 4px;
     }
 
+        .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      margin-bottom: 20px;
+      background-color: var(--white);
+      border: 1px solid #DADFE3;
+      border-radius: 6px;
+      color: var(--rc-blue);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .back-btn:hover {
+      background-color: var(--rc-orange);
+      border-color: var(--rc-orange);
+      color: var(--white);
+    }
+
   </style>
 </head>
 <body>
@@ -1277,9 +1299,8 @@ summary.rc-collapsible-header:hover {
     </section>
 
     <section id="blank-section" class="content-section">
-      <div id="blankSectionContent">
-        
-      </div>
+      <button class="back-btn" onclick="goBack()">&#8592; Back to Updates</button>
+      <div id="blankSectionContent"></div>
     </section>
   
 
@@ -1315,20 +1336,30 @@ summary.rc-collapsible-header:hover {
       // Add more articles here as you publish updates
     };
 
+    let previousSectionId = 'qa-corner'; // fallback if nothing was tracked yet
+
     function openArticle(articleId) {
       const article = articles[articleId];
       if (!article) return;
+
+      // Remember whichever section was showing before we navigate away
+      const currentActive = document.querySelector('.content-section.active');
+      if (currentActive) {
+        previousSectionId = currentActive.id;
+      }
 
       document.getElementById('blankSectionContent').innerHTML = `
         <h1>${article.title}</h1>
         <p style="color:#888; font-size:0.85rem; margin-bottom:4px;">${article.date}</p>
         <p style="color:#aaa; font-size:0.75rem; margin-bottom:20px;">Reference: ${article.id}</p>
-        <hr>
-        <br>
         ${article.body}
       `;
 
       showSection('blank-section');
+    }
+
+    function goBack() {
+      showSection(previousSectionId);
     }
 
     // --- Process Books (multiple books, each with its own pages) ---
