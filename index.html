@@ -813,7 +813,170 @@ summary.rc-collapsible-header:hover {
       color: var(--white);
     }
 
-    
+        /* --- ULTIMATE HALL OF FAMER BOX --- */
+    .uhof-box {
+      background-color: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 30px 0;
+      box-shadow: 0 6px 20px rgba(255, 90, 0, 0.18);
+      border: 2px solid var(--rc-orange);
+    }
+
+    .uhof-header {
+      background: linear-gradient(135deg, #0A2540 0%, #123661 55%, #FF5A00 160%);
+      padding: 20px 26px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .uhof-header-icon {
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .uhof-header-text {
+      color: var(--white);
+    }
+
+    .uhof-header-label {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.3px;
+    }
+
+    .uhof-header-sub {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.85);
+      font-weight: 600;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .uhof-explainer {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px 26px;
+      background-color: #FFF8F4;
+      border-bottom: 1px solid #FFE5D4;
+    }
+
+    .uhof-explainer-icon {
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      margin-top: 1px;
+    }
+
+    .uhof-explainer p {
+      font-size: 0.88rem;
+      color: #6B4A34;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .uhof-table-section {
+      padding: 22px 26px 26px;
+    }
+
+    .uhof-table-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--rc-blue);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .uhof-table-title::before {
+      content: '';
+      width: 4px;
+      height: 16px;
+      background-color: var(--rc-orange);
+      border-radius: 2px;
+      display: inline-block;
+    }
+
+    .uhof-table-container {
+      width: 100%;
+      overflow-x: auto;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .uhof-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--white);
+      font-size: 0.9rem;
+    }
+
+    .uhof-table thead th {
+      background-color: var(--rc-blue);
+      color: var(--white);
+      font-weight: 700;
+      padding: 12px 16px;
+      text-align: left;
+      white-space: nowrap;
+    }
+
+    .uhof-table tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #EDEDED;
+      color: #333;
+      vertical-align: middle;
+    }
+
+    .uhof-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .uhof-table tbody tr:nth-child(even) {
+      background-color: #FAFAFA;
+    }
+
+    .uhof-table tbody tr:hover {
+      background-color: #FFF4EC;
+    }
+
+    .uhof-rank-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--white);
+    }
+
+    .uhof-rank-badge.gold { background: linear-gradient(135deg, #FFD700, #E8B800); }
+    .uhof-rank-badge.silver { background: linear-gradient(135deg, #C7CCD1, #A6ACB2); }
+    .uhof-rank-badge.bronze { background: linear-gradient(135deg, #D89A6A, #B87A4C); }
+
+    .uhof-advisor-name {
+      font-weight: 700;
+      color: var(--rc-blue);
+    }
+
+    .uhof-qa-avg {
+      font-weight: 800;
+      color: var(--rc-orange);
+    }
+
+    .uhof-qrm-count {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      background-color: #E9F7EE;
+      color: #1E8E3E;
+    }
 
   </style>
 </head>
@@ -1442,6 +1605,73 @@ summary.rc-collapsible-header:hover {
       <h1>QA Wall of Fame</h1>
       <p>Honoring high quality standards and top audit scores.</p>
       <br><hr><br>
+
+      <div class="uhof-box">
+  <div class="uhof-header">
+    <span class="uhof-header-icon">&#128081;</span>
+    <div class="uhof-header-text">
+      <div class="uhof-header-label">Ultimate Hall of Famer(s)</div>
+      <div class="uhof-header-sub">Running QA Average For Year 2026</div>
+    </div>
+  </div>
+
+  <div class="uhof-explainer">
+    <span class="uhof-explainer-icon">&#128161;</span>
+    <p>Hall of Famer(s) is the one who exemplifies consistent QA performance with no or minimal QRM infractions.</p>
+  </div>
+
+  <div class="uhof-table-section">
+    <div class="uhof-table-title">QA Performance Breakdown</div>
+
+    <div class="uhof-table-container">
+      <table class="uhof-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Advisor</th>
+            <th>QA Average</th>
+            <th># of Audits</th>
+            <th>QRMs</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- ===== ROW 1 — GOLD ===== -->
+          <tr>
+            <td><span class="uhof-rank-badge gold">1</span></td>
+            <!-- EDIT: advisor name -->
+            <td class="uhof-advisor-name">Advisor Name</td>
+            <!-- EDIT: QA average -->
+            <td class="uhof-qa-avg">9.87</td>
+            <!-- EDIT: number of audits -->
+            <td>24</td>
+            <!-- EDIT: number of QRMs -->
+            <td><span class="uhof-qrm-count">0</span></td>
+          </tr>
+
+          <!-- ===== ROW 2 — SILVER ===== -->
+          <tr>
+            <td><span class="uhof-rank-badge silver">2</span></td>
+            <td class="uhof-advisor-name">Advisor Name</td>
+            <td class="uhof-qa-avg">9.75</td>
+            <td>22</td>
+            <td><span class="uhof-qrm-count">1</span></td>
+          </tr>
+
+          <!-- ===== ROW 3 — BRONZE ===== -->
+          <tr>
+            <td><span class="uhof-rank-badge bronze">3</span></td>
+            <td class="uhof-advisor-name">Advisor Name</td>
+            <td class="uhof-qa-avg">9.60</td>
+            <td>20</td>
+            <td><span class="uhof-qrm-count">1</span></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
       
       <details class="rc-collapsible">
         <summary class="rc-collapsible-header">August 2026 QA Standouts</summary>
