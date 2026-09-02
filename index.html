@@ -1967,122 +1967,24 @@ summary.rc-collapsible-header:hover {
     // --- Process Books (multiple books, each with its own pages) ---
     // Add a new BOOK by adding a new key to this object.
     // Add a new PAGE to a book by adding an object to that book's array.
-    const processBooks = {
-      'book1': {
-        label: 'QA Dispute Process',
-        pages: [
-          {
-            tag: 'QA Dispute',
-            title: 'Stage 1',
-            body: `
-              <p>After advisor received his/her audit result; ​</p>
-              <ol>
-                <li>Review the markdowns and call recording attached to the email sent by the auditor.</li>
-                <li>Send email to your immediate supervisor indicating the discrepancy found in the audit within 24 hours.</li>
-              </ol>
-            `,
-            note: 'The 24-hour duration for dispute will be extended if the advisor is on leave and will resume until his/her return. Also, this duration does not count weekends. '
-          },
-          {
-            tag: 'QA Dispute',
-            title: 'Stage 2',
-            body: `
-              <p>After Supervisor received email from the advisor;​</p>
-              <ol>
-                <li>Supervisor evaluates the potential cause of the dispute.​</li>
-                <li>If a dispute is deemed valid, the supervisor sends an email to the QA team, CCing the advisor. Otherwise, the supervisor will coach the advisor regarding the result including possible infractions committed.​​</li>
-                <li>QA team re-evalutes the dispute based on the supervisor's input and set a discussion for its resolution within 48-72 hours. ​​</li>
-              </ol>
-            `,
-            note: ''
-          },
-          {
-            tag: 'QA Dispute',
-            title: 'Stage 3',
-            body: `
-              <p>Final resolution; ​</p>
-              <ol>
-                <li>Auditor sends an email to Supervisor, CC the advisor, and provides the result of the discussion.​​</li>
-                <li>If the dispute is invalid but advisor escalates further, auditor sends email to AM Miky Imperial concerning the matter.​​</li>
-                <li>Advisor will await for further instruction. ​</li>
-              </ol>
-            `,
-            note: 'Direct messages to your auditor regarding your markdowns will not be entertained'
-          },
-        ]
-      },
-      'book2': {
-        label: 'GSP TO Verification Process',
-        pages: [
-          {
-            tag: 'Verification',
-            title: 'Hierarchy of Validation',
-            body: `
-              <p>The following methods of validation must be followed in order : </p>
-              <ol>
-                <li><strong>Secure Code – </strong>Each user extension can be validated by having the system automatically send 6-digit secure code to the email linked with that extension. When available, this method must be prioritized.</li>
-                <li><strong>Security Question – </strong>Same with secure code, each extension can be set up with security question as alternative to secure code in case in the future, receiving secure code through the email is compromised.</li>
-                <li><strong>Dialer/IC/Partner – </strong>Inbound advisor must ask Dialer/Partner if the account is fully validated. Dialer/IC/Partner may need to do 2nd level validation or Secure code/Security question which both serve as Full Validation before transferring to inbound.</li>
-                  <ul>
-                  <li>Note : Partner Tier 1 may have different verification process so, our standard verification process may take in place.</li>
-                  </ul>
-                <li><strong>2nd Level Validation – </strong>This will be the last resort for validation in cases other methods are unavailable or there are technical issues encountered. Ensure technical issues are logged completely. Please refer to the table below.</li>
-              </ol>
-            `,
-            note: 'IMPORTANT : Strictly, follow our verification guidelines before disclosing any information about the account. Otherwise, this will result into L3 QRM call out.'
-          },
-          {
-            tag: 'Verification',
-            title: 'Second-Level Validation',
-            body: `
-              <p>When the primary methods of validation are not available, the second-validation method can be used provided that the following accounts details are provided : </p>
-              <ul>
-                <li><strong>AT&T Office At Hand (At least 3)</strong></li>
-                  <ul>
-                    <li>Sub Account Number (SA Node) for UB, CTN for Telegence - 2nd Level Validation is completed if this is provided</li>
-                    <li>Company Name</li>
-                    <li>Address on file (In SCP/SF)</li>
-                    <li>Contact Number in SCP</li>
-                    <li>MAC Address available</li>
-                    <li>Email address </li>
-                  </ul>
-                <li><strong>Telus Business Connect (At least 3)</strong></li>
-                  <ul>
-                    <li>Email address on file</li>
-                    <li>Company Name</li>
-                    <li>Phone number</li>
-                    <li>Address on file</li>
-                    <li>BAN </li>
-                  </ul>
-                <li><strong>RC EMEA/RC AU/GSP EMEA/RISE Americas (At least 3)</strong></li>
-                  <ul>
-                    <li>Email address on file</li>
-                     <li>Company Name</li>
-                      <li>MAC Address</li>
-                       <li>Address on file</li>
-                        <li>Contact Number in SCP</li>
-                  </ul>
-                <li><strong>Frontier With RingCentral  (At least 1)</strong></li>
-                  <ul>
-                    <li>Email address on file</li>
-                    <li>Company Name</li>
-                    <li>MAC Address</li>
-                    <li>Address on file/li>
-                    <li>Contact Number in SCP</li>
-                  </ul>
-              </ul>
-              <p>For more details, please click this link :    <a href="https://docs.google.com/document/d/1YgHQlP2VuAQN8qbmOflxmfdusQBBa7838jCjbtwiFG0/edit?tab=t.0" target="_blank"><strong>GSP Technical Onboarding Verification Guide Using SCP</strong></a></p>
-            `,
-            note: 'IMPORTANT : Strictly, follow our verification guidelines before disclosing any information about the account. Otherwise, this will result into L3 QRM call out.'
-          }
-        ]
-      }
-
-      // Add more books here, e.g. 'book3': { label: 'Process Book 3', pages: [ ... ] }
-    };
+    let  processBooks = {};
 
     let pbCurrentBook = 'book1';
     let pbCurrentPage = 0;
+
+      fetch('data/processbooks.json')
+      .then(response => response.json())
+      .then(data => {
+
+        processBooks = data;
+
+        pbRenderTabs();
+        pbRender();
+
+      })
+      .catch(error => {
+        console.error('Error loading process books:', error);
+      });
 
     function pbRenderTabs() {
       const tabs = document.getElementById('pbTabs');
@@ -2135,8 +2037,7 @@ summary.rc-collapsible-header:hover {
       pbRender();
     }
 
-    pbRenderTabs();
-    pbRender(); 
+
 
     // Section Switcher with Navigation Highlight
     function showSection(sectionId) {
