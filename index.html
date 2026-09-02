@@ -813,61 +813,7 @@ summary.rc-collapsible-header:hover {
       color: var(--white);
     }
 
-        /* --- IMAGE-LEFT CONTENT BLOCK --- */
-    .content-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 28px;
-      margin: 25px 0;
-    }
-
-    .content-block-image {
-      flex: 0 0 320px;
-    }
-
-    .content-block-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.08);
-      display: block;
-    }
-
-    .content-block-text {
-      flex: 1;
-      min-width: 0;
-    }
-
-    .content-block-text p {
-      color: #444;
-      font-size: 0.95rem;
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    .content-block-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .content-block-footnote {
-      margin-top: 18px;
-      padding-top: 16px;
-      border-top: 1px solid #EAEAEA;
-      color: #888;
-      font-size: 0.85rem;
-      font-style: italic;
-    }
-
-    /* Stack on smaller screens */
-    @media (max-width: 700px) {
-      .content-block {
-        flex-direction: column;
-      }
-      .content-block-image {
-        flex: none;
-        width: 100%;
-      }
-    }
+    
 
   </style>
 </head>
@@ -1637,40 +1583,48 @@ summary.rc-collapsible-header:hover {
 
     </details> 
       
-    <h3><strong>Now that you know about the importance of QRM 🤔</strong></h3>
+    <p><strong>Now that you know about the importance of QRM 🤔</strong></p>
     <p>Let's look at some of the common QRM infractions in GSP TO that are committed during onboarding sessions and how to prevent incurring them. </p>
     <br>
     
-    <div class="content-block">
-      <div class="content-block-image">
-        <img src="Screen Share Image.jfif" alt="Screen Share">
-      </div>
-      <div class="content-block-text">
-        <p>Due to a lack of organization, RingCentral’s mandatory screen sharing disclaimer is frequently being missed. To ensure compliance, this policy must be followed without exception whenever you initiate a screen share with a client.</p><br>
-        <p>You must deliver the complete 4-point disclaimer before sending a meeting link or having the customer join your session.</p><br>
-        <p><strong>Common Non-Compliance Issues:</strong></p>
-          <ul>
-            <li>Failing to read the disclaimer entirely.</li>
-            <li>Omitting one or more of the required points.</li>
-            <li>Stopping mid-disclaimer due to a customer interruption without attempting to finish it.</li>
-            <li>Sending meeting link first. Customers who are tech-savvy sometimes get ahead.</li>
-          </ul><br>
-        <p><strong>Best Practice: </strong></p><br>
-        <p>Keep a digital notepad open with the standard text. Practice reading it naturally so it sounds like a smooth, effortless part of your conversation rather than a script.</p><br>
-        <p><strong>QRM Item Applicable </strong></p>
-        <p>5. Disclaimers/ Disclosures ➡️5.2  No remote access disclaimer ➡️Level 3 ➡️ Compliance Item ➡️ Failure to provide complete critical remote monitoring/access disclaimers before initiating a remote session.</p>
-        <br>
-        <p><strong>Screen Sharing Disclaimer</strong></p>
-          <ol>
-            <li>Please close all windows or databases I shouldn't see. </li>
-            <li>Stay on the computer all the time while on screen share. </li>
-            <li>Changes will only be made to <BRAND> services, or any program or file, upon your approval. </li>
-            <li>And lastly, you may stop sharing at any time you feel uncomfortable.</li>
-          </ol>
-      </div>
-    </div>
-    <p class="content-block-footnote"><strong>Note 📝: </strong>It is highly recommended to adhere strictly to the disclaimer noted above.</p>
+    <details class="rc-collapsible"> 
 
+      <summary class="rc-collapsible-header">Screen Sharing Disclaimer</summary> 
+
+      <div class="rc-collapsible-body"> 
+        <div style="display: flex; gap:20px; justify-content: space-around;">
+          <img src="Screen Share Image.jfif" alt="Screen Share" style="max-width: 50%;">
+        
+          <div>
+            <p>Due to a lack of organization, RingCentral’s mandatory screen sharing disclaimer is frequently being missed. To ensure compliance, this policy must be followed without exception whenever you initiate a screen share with a client.</p><br>
+            <p>You must deliver the complete 4-point disclaimer before sending a meeting link or having the customer join your session.</p><br>
+            <p><strong>Common Non-Compliance Issues:</strong></p>
+              <ul>
+                <li>Failing to read the disclaimer entirely.</li>
+                <li>Omitting one or more of the required points.</li>
+                <li>Stopping mid-disclaimer due to a customer interruption without attempting to finish it.</li>
+                <li>Sending meeting link first. Customers who are tech-savvy sometimes get ahead.</li>
+              </ul><br>
+            <p><strong>Best Practice: </strong></p><br>
+            <p>Keep a digital notepad open with the standard text. Practice reading it naturally so it sounds like a smooth, effortless part of your conversation rather than a script.</p><br>
+            <p><strong>QRM Item Applicable </strong></p>
+            <p>5. Disclaimers/ Disclosures ➡️5.2  No remote access disclaimer ➡️Level 3 ➡️ Compliance Item ➡️ Failure to provide complete critical remote monitoring/access disclaimers before initiating a remote session.</p>
+            <br>
+            <p><strong>Screen Sharing Disclaimer</strong></p>
+              <ol>
+                <li>Please close all windows or databases I shouldn't see. </li>
+                <li>Stay on the computer all the time while on screen share. </li>
+                <li>Changes will only be made to <BRAND> services, or any program or file, upon your approval. </li>
+                <li>And lastly, you may stop sharing at any time you feel uncomfortable.</li>
+              </ol>
+          </div>
+        </div>
+      </div> 
+
+    </details> 
+    
+        
+      
     </section>
 
     <section id="qa-forms" class="content-section">
