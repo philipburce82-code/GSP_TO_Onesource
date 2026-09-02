@@ -549,8 +549,8 @@ summary.rc-collapsible-header {
   padding: 14px 18px;
   font-size: 1rem;
   font-weight: 700;
-  color: var(--rc-blue);
-  background-color: #FFFFFF;
+  color: var(--white);
+  background-color: var(--rc-orange);
   cursor: pointer;
   list-style: none; /* Removes default arrow in webkit */
   display: flex;
