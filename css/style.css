@@ -568,7 +568,7 @@ summary.rc-collapsible-header::-webkit-details-marker {
 summary.rc-collapsible-header::after {
   content: '▼';
   font-size: 0.75rem;
-  color: var(--rc-blue);
+  color: var(--rc-light-blue);
   transition: transform 0.3s ease;
 }
 
