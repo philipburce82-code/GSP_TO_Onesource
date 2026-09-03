@@ -806,8 +806,7 @@ summary.rc-collapsible-header:hover {
     }
 
         /* --- ULTIMATE HALL OF FAMER BOX --- */
-    #csat-rockstars .uhof-box,
-    #qa-wall-of-fame .uhof-box{
+    .uhof-box{
       background-color: var(--white);
       border-radius: 12px;
       overflow: hidden;
