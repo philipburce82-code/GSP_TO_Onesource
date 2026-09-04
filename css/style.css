@@ -75,7 +75,7 @@
 
     /* Scrolled state: header darkens toward black as the page scrolls */
     .top-header.scrolled {
-      background-color: rgba(10, 10, 12, 0.92);
+      background-color: var(--rc-blue);
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
 
@@ -112,7 +112,7 @@
     .site-title {
       font-size: 1.2rem;
       font-weight: 700;
-      color: var(--white);
+      color: var(--rc-blue);
       white-space: nowrap;
     }
 
