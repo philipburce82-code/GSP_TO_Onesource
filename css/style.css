@@ -82,7 +82,7 @@
     /* 1. Logo Section */
     .logo-container {
     background-color: var(--white);
-    padding: 2px 15px;
+    padding: 5px 15px;
     border-radius: 8px;
     display: flex;
     align-items: center;
