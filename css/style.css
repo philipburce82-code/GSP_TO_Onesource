@@ -84,7 +84,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 5px 15px;
+  padding: 8px 15px;
   background-color: var(--rc-blue);
   border-radius: 8px;
   flex-shrink: 0;
