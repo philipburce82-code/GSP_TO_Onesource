@@ -85,7 +85,7 @@
   align-items: center;
   gap: 10px;
   padding: 5px 15px;
-  background-color: var(--white);
+  background-color: var(--rc-blue);
   border-radius: 8px;
   flex-shrink: 0;
   cursor: pointer;
@@ -97,6 +97,7 @@
       height: 44px;
       width: auto;
       object-fit: contain;
+      border-radius: 8px;
     }
 
     /* Responsive images inside content sections only */
