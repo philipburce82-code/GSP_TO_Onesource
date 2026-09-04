@@ -62,7 +62,7 @@
       left: 0;
       width: 100%;
       height: 56px;
-      background-color: var(--rc-light-blue);
+      background-color: var(--rc-blue);
       border-bottom: 3px solid var(--rc-orange);
       display: flex;
       align-items: center;
@@ -81,14 +81,14 @@
 
     /* 1. Logo Section */
     .logo-container {
-      display: flex;
-      align-items: center;
-      padding-right: 15px;
-      gap: 10px;
-      border-right: 1px solid rgba(255, 255, 255, 0.15);
-      flex-shrink: 0;
-      cursor: pointer;
-    }
+    background-color: var(--white);
+    padding: 8px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
     .logo-container img {
       height: 44px;
       width: auto;
