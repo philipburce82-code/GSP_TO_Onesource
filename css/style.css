@@ -94,7 +94,7 @@
 }
 
     .logo-container img {
-      height: 44px;
+      height: auto;
       width: auto;
       object-fit: contain;
       border-radius: 8px;
