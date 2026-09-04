@@ -81,14 +81,17 @@
 
     /* 1. Logo Section */
     .logo-container {
-    background-color: var(--white);
-    padding: 5px 15px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    cursor: pointer;
-  }
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 15px;
+  background-color: var(--white);
+  border-radius: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  /* Optional divider, now visible against white bg instead of navy */
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
 
     .logo-container img {
       height: 44px;
